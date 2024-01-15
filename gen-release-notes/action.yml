@@ -1,5 +1,5 @@
 name: 'Generate Release Notes'
-description: 'Generate release notes from the repository's milestone and issues'
+description: "Generate release notes from the repository's milestone and issues"
 
 inputs:
   github-token:
