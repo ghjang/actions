@@ -1,21 +1,6 @@
 name: 'Generate Release Notes'
 description: "Generate release notes from the repository's milestone and issues"
 
-inputs:
-  github-token:
-    description: 'The GitHub token to use for authentication'
-    required: true
-  github-repository:
-    description: 'The GitHub repository to use'
-    required: true
-  tag-version:
-    description: 'The tag version to use'
-    required: true
-
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/ghjang/dockers/alpine-3.19-for-release-notes-gen:3.19-latest'
-  env:
-    GITHUB_TOKEN: ${{ inputs.github-token }}
-    GITHUB_REPOSITORY: ${{ inputs.github-repository }}
-    TAG_VERSION: ${{ inputs.tag-version }}
