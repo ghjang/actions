@@ -1,0 +1,16 @@
+name: Set up Auth Token for GitHub CLI
+
+inputs:
+  authToken:
+    description: 'GitHub Auth Token'
+    required: true
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: 'Set execute permissions for script'
+      run: |
+        mkdir -p ~/.config/gh
+        echo "github.com:" > ~/.config/gh/hosts.yml
+        echo "  oauth_token: ${{ inputs.authToken }}" >> ~/.config/gh/hosts.yml
