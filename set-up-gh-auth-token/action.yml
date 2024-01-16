@@ -9,8 +9,10 @@ runs:
   using: 'composite'
 
   steps:
+    # NOTE: '커스텀 액션'에서 'shell' 속성은 'required'이다.
     - name: 'Set execute permissions for script'
       run: |
         mkdir -p ~/.config/gh
         echo "github.com:" > ~/.config/gh/hosts.yml
         echo "  oauth_token: ${{ inputs.authToken }}" >> ~/.config/gh/hosts.yml
+      shell: sh
