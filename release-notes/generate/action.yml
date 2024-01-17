@@ -10,6 +10,18 @@ inputs:
     description: The name of the project
     default: ""
 
+  releaseNotesDir:
+    description: The directory to store the release notes
+    default: "_release-notes"
+
+  combinedReleaseNotesFile:
+    description: The file path of the combined release notes
+    default: "RELEASE_NOTES.md"
+
+  targetBranchForReleaseNotesSave:
+    description: The branch to save the release notes
+    default: "main"
+
   releaseVersion:
     description: The version of the release
     required: true
@@ -20,4 +32,7 @@ runs:
   env:
     GITHUB_TOKEN: ${{ inputs.authToken }}
     PROJECT_NAME: ${{ inputs.projectName }}
+    RELEASE_NOTES_DIR: ${{ inputs.releaseNotesDir }}
+    COMBINED_RELEASE_NOTES_FILE: ${{ inputs.combinedReleaseNotesFile }}
+    TARGET_BRANCH: ${{ inputs.targetBranchForReleaseNotesSave }}
     RELEASE_VERSION: ${{ inputs.releaseVersion }}
