@@ -1,0 +1,26 @@
+name: Upload Release Asset to GitHub Release
+
+inputs:
+  githubRef:
+    description: GitHub Ref
+    required: true
+
+  githubRepository:
+    description: GitHub Repository
+    required: true
+
+  buildOutputFile:
+    description: Build Output File
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - name: Create Release
+      run: |
+        TAG_NAME="$(echo ${{ inputs.githubRef }} | sed 's/refs\/tags\///g')"
+        gh release upload "${TAG_NAME}" \
+                    --repo ${{ inputs.githubRepository }} \
+                    ${{ inputs.buildOutputFile }}
+      shell: sh
