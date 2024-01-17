@@ -1,0 +1,26 @@
+name: Upload Combined Release Notes to GitHub Release
+
+inputs:
+  githubRef:
+    description: GitHub Ref
+    required: true
+
+  githubRepository:
+    description: GitHub Repository
+    required: true
+
+  combinedReleaseNotesFile:
+    description: Combined Release Notes File
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - name: Upload Combined Release Notes
+      run: |
+        TAG_NAME="$(echo ${{ inputs.githubRef }} | sed 's/refs\/tags\///g')"
+        gh release upload "${TAG_NAME}" \
+                    --repo ${{ inputs.githubRepository }} \
+                    ${{ inputs.combinedReleaseNotesFile }}
+      shell: sh
