@@ -10,9 +10,14 @@ inputs:
     description: The name of the project
     default: ""
 
+  releaseVersion:
+    description: The version of the release
+    required: true
+
 runs:
   using: docker
   image: docker://ghcr.io/ghjang/dockers/alpine-3.19-for-release-notes-gen:3.19-latest
   env:
     GITHUB_TOKEN: ${{ inputs.authToken }}
     PROJECT_NAME: ${{ inputs.projectName }}
+    RELEASE_VERSION: ${{ inputs.releaseVersion }}
