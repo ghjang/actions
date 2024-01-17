@@ -1,0 +1,35 @@
+name: Create GitHub Release
+
+inputs:
+  githubRef:
+    description: 'GitHub Ref'
+    required: true
+
+  githubRepository:
+    description: 'GitHub Repository'
+    required: true
+
+  githubSha:
+    description: 'GitHub SHA'
+    required: true
+
+  releaseTitle:
+    description: 'Release Title'
+    required: true
+
+  releaseNotesFile:
+    description: 'Release Notes File'
+    required: true
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: 'Create Release'
+      run: |
+        gh release create ${{ inputs.githubRef }} \
+                    --repo ${{ inputs.githubRepository }} \
+                    --target ${{ inputs.githubSha }} \
+                    --title "${{ inputs.releaseTitle }}" \
+                    --notes-file ${{ inputs.releaseNotesFile }}
+      shell: sh
