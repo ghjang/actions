@@ -1,6 +1,0 @@
-name: 'Generate Release Notes'
-description: "Generate release notes from the repository's milestone and issues"
-
-runs:
-  using: 'docker'
-  image: 'docker://ghcr.io/ghjang/dockers/alpine-3.19-for-release-notes-gen:3.19-latest'
